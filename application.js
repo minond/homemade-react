@@ -8,7 +8,7 @@ class CurrentTime extends HomemadeComponent {
   componentDidMount() {
     this.timer = setInterval(() => {
       this.setState({ time: Date.now() });
-    }, 1000);
+    }, this.props.delay);
   }
 
   render() {
@@ -16,4 +16,6 @@ class CurrentTime extends HomemadeComponent {
   }
 }
 
-HomemadeReactDOM.render(CurrentTime, document.getElementById("view"));
+HomemadeReactDOM.render(CurrentTime, { delay: 1 }, document.getElementById("time1"));
+HomemadeReactDOM.render(CurrentTime, { delay: 100 }, document.getElementById("time2"));
+HomemadeReactDOM.render(CurrentTime, { delay: 1000 }, document.getElementById("time3"));

@@ -37,10 +37,19 @@ var HomemadeReactDOM = { componentCache: [] };
  * "new" it) and an HTMLElement which the component should be mounted on to.
  *
  * @param {HomemadeComponent} componentClass
+ * @param {object} props initial prop values
+ * @param {HTMLElement} componentClass
+ *
+ * @param {HomemadeComponent} componentClass
  * @param {HTMLElement} componentClass
  */
-HomemadeReactDOM.render = (componentClass, parent) => {
-  var component = new componentClass({});
+HomemadeReactDOM.render = (componentClass, props, parent) => {
+  if (!parent) {
+    parent = props;
+    props = {};
+  }
+
+  var component = new componentClass(props);
   HomemadeReactDOM.componentCache.push({ component, parent });
   HomemadeReactDOM.update(component);
   component.componentDidMount();
